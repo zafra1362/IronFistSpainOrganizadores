@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/mensajesFragment"
+        android:title="Mensajes"
+        android:icon="@drawable/mensaje" />
+
+    <item android:id="@+id/notificacionesFragment"
+        android:title="Notificaciones"
+        android:icon="@drawable/notificaciones" />
+
+    <item android:id="@+id/retosPendientesFragment"
+        android:title="Retos pendientes"
+        android:icon="@drawable/retospendientes" />
+</menu>
