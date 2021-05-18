@@ -1,0 +1,100 @@
+{
+  "project_info": {
+    "project_number": "25864045997",
+    "project_id": "ironfistspainapp-517db",
+    "storage_bucket": "ironfistspainapp-517db.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25864045997:android:20cc6f9769c0e145adcd24",
+        "android_client_info": {
+          "package_name": "com.renegade"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25864045997-cgai5a2qnb3j79a88qn0q22vbtph7rm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzIY_fieoPVf7xfOEU1nFusNouiWg1ZrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25864045997-cgai5a2qnb3j79a88qn0q22vbtph7rm9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:25864045997:android:e81259ab066595a1adcd24",
+        "android_client_info": {
+          "package_name": "com.renegade.ironfistspain"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "25864045997-23dbb0ofia1nr6jrt7h3heret50brpm5.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.renegade.ironfistspain",
+            "certificate_hash": "a5d867ae14e9153a7a4eeb4563f8da17859f46fa"
+          }
+        },
+        {
+          "client_id": "25864045997-46n6o4um7rm1cg2jg6p2topolnaug7uh.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.renegade.ironfistspain",
+            "certificate_hash": "749820bf766c498c8c50de6066e5311dd5223309"
+          }
+        },
+        {
+          "client_id": "25864045997-47ctbq766ik3emfc9siqfeunla8d0llq.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.renegade.ironfistspain",
+            "certificate_hash": "822dcfb9d31a5d3b3a47010985dfbf0d8aa4aa0b"
+          }
+        },
+        {
+          "client_id": "25864045997-b0pik0t2ufkd5b42l63f0rkbnlqmg3k3.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.renegade.ironfistspain",
+            "certificate_hash": "903d5b3eb6345f9a7f65b58243a9381e42f87ad4"
+          }
+        },
+        {
+          "client_id": "25864045997-cgai5a2qnb3j79a88qn0q22vbtph7rm9.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBzIY_fieoPVf7xfOEU1nFusNouiWg1ZrM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "25864045997-cgai5a2qnb3j79a88qn0q22vbtph7rm9.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
