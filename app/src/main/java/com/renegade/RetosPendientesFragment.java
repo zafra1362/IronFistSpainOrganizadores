@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link retosPendientes#newInstance} factory method to
+ * Use the {@link RetosPendientesFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class retosPendientes extends Fragment {
+public class RetosPendientesFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class retosPendientes extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public retosPendientes() {
+    public RetosPendientesFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class retosPendientes extends Fragment {
      * @return A new instance of fragment retosPendientes.
      */
     // TODO: Rename and change types and number of parameters
-    public static retosPendientes newInstance(String param1, String param2) {
-        retosPendientes fragment = new retosPendientes();
+    public static RetosPendientesFragment newInstance(String param1, String param2) {
+        RetosPendientesFragment fragment = new RetosPendientesFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

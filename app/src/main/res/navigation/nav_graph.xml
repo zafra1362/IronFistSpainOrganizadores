@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/mensajesFragment"
-        android:name="com.renegade.mensajes"
+        android:name="com.renegade.MensajesFragment"
         android:label="fragment_mensajes"
         tools:layout="@layout/fragment_mensajes" >
         <action
@@ -19,7 +19,7 @@
     </fragment>
     <fragment
         android:id="@+id/notificacionesFragment"
-        android:name="com.renegade.notificaciones"
+        android:name="com.renegade.NotificacionesFragment"
         android:label="fragment_notificaciones"
         tools:layout="@layout/fragment_notificaciones" >
         <action
@@ -31,7 +31,7 @@
     </fragment>
     <fragment
         android:id="@+id/retosPendientesFragment"
-        android:name="com.renegade.retosPendientes"
+        android:name="com.renegade.RetosPendientesFragment"
         android:label="fragment_retos_pendientes"
         tools:layout="@layout/fragment_retos_pendientes" >
         <action
