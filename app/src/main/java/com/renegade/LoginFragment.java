@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link RetosPendientesFragment#newInstance} factory method to
+ * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class RetosPendientesFragment extends BaseFragment {
+public class LoginFragment extends BaseFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class RetosPendientesFragment extends BaseFragment {
     private String mParam1;
     private String mParam2;
 
-    public RetosPendientesFragment() {
+    public LoginFragment() {
         // Required empty public constructor
     }
 
@@ -34,11 +34,11 @@ public class RetosPendientesFragment extends BaseFragment {
      *
      * @param param1 Parameter 1.
      * @param param2 Parameter 2.
-     * @return A new instance of fragment retosPendientes.
+     * @return A new instance of fragment LoginFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static RetosPendientesFragment newInstance(String param1, String param2) {
-        RetosPendientesFragment fragment = new RetosPendientesFragment();
+    public static LoginFragment newInstance(String param1, String param2) {
+        LoginFragment fragment = new LoginFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class RetosPendientesFragment extends BaseFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_retos_pendientes, container, false);
+        return inflater.inflate(R.layout.fragment_login, container, false);
     }
 }

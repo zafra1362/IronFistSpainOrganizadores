@@ -23,7 +23,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="@color/black"
+        android:background="@color/DarkRed"
         android:fitsSystemWindows="true"
         app:itemIconTint="@color/white"
         app:itemTextColor="@color/white"
@@ -31,7 +31,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:menu="@menu/menu"
-        tools:ignore="MissingConstraints" />
+        app:menu="@menu/menu" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

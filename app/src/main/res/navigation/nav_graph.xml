@@ -9,36 +9,42 @@
         android:id="@+id/mensajesFragment"
         android:name="com.renegade.MensajesFragment"
         android:label="fragment_mensajes"
-        tools:layout="@layout/fragment_mensajes" >
-        <action
-            android:id="@+id/action_mensajes_to_notificaciones"
-            app:destination="@id/notificacionesFragment" />
-        <action
-            android:id="@+id/action_mensajes_to_retosPendientes"
-            app:destination="@id/retosPendientesFragment" />
-    </fragment>
+        tools:layout="@layout/fragment_mensajes" />
     <fragment
         android:id="@+id/notificacionesFragment"
         android:name="com.renegade.NotificacionesFragment"
         android:label="fragment_notificaciones"
         tools:layout="@layout/fragment_notificaciones" >
         <action
-            android:id="@+id/action_notificaciones_to_retosPendientes"
-            app:destination="@id/retosPendientesFragment" />
-        <action
-            android:id="@+id/action_notificaciones_to_mensajes"
-            app:destination="@id/mensajesFragment" />
+            android:id="@+id/action_notificacionesFragment_to_editarRetoFragment"
+            app:destination="@id/editarRetoFragment" />
     </fragment>
     <fragment
         android:id="@+id/retosPendientesFragment"
         android:name="com.renegade.RetosPendientesFragment"
         android:label="fragment_retos_pendientes"
-        tools:layout="@layout/fragment_retos_pendientes" >
+        tools:layout="@layout/fragment_retos_pendientes" />
+    <fragment
+        android:id="@+id/loginFragment"
+        android:name="com.renegade.LoginFragment"
+        android:label="fragment_login"
+        tools:layout="@layout/fragment_login" >
         <action
-            android:id="@+id/action_retosPendientes_to_notificaciones"
-            app:destination="@id/notificacionesFragment" />
-        <action
-            android:id="@+id/action_retosPendientes_to_mensajes"
-            app:destination="@id/mensajesFragment" />
+            android:id="@+id/action_loginFragment_to_registroFragment"
+            app:destination="@id/registroFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/registroFragment"
+        android:name="com.renegade.RegistroFragment"
+        android:label="fragment_registro"
+        tools:layout="@layout/fragment_registro" >
+        <action
+            android:id="@+id/action_registroFragment_to_notificacionesFragment"
+            app:destination="@id/notificacionesFragment" />
+    </fragment>
+    <dialog
+        android:id="@+id/editarRetoFragment"
+        android:name="com.renegade.EditarRetoFragment"
+        android:label="fragment_editar_reto"
+        tools:layout="@layout/fragment_editar_reto" />
 </navigation>
