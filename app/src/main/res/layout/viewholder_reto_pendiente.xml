@@ -17,18 +17,25 @@
 
 
         <LinearLayout
-            android:id="@+id/linearLayout"
+            android:id="@+id/linearLayout1"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
             android:gravity="center"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent">
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintBottom_toTopOf="@+id/estadoRetoPendiente">
 
 
             <TextView
-                android:id="@+id/nombreRival1Notificacion"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Reto entre "
+                android:textColor="@color/black"
+                android:textSize="20sp" />
+
+            <TextView
+                android:id="@+id/nombreRival1RetoPendiente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rival"
@@ -44,7 +51,7 @@
                 android:textSize="20sp" />
 
             <TextView
-                android:id="@+id/nombreRival2Notificacion"
+                android:id="@+id/nombreRival2RetoPendiente"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="Rival"
@@ -52,50 +59,19 @@
                 android:textSize="22sp"
                 android:textStyle="bold" />
 
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text=" quieren pelear"
-                android:textColor="@color/black"
-                android:textSize="20sp" />
 
         </LinearLayout>
 
         <TextView
-            android:id="@+id/rangoHora1"
+            android:id="@+id/estadoRetoPendiente"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text=":"
-            android:textSize="18sp"
             android:textColor="@color/black"
-            app:layout_constraintEnd_toStartOf="@+id/rangoHora2"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-        <TextView
-            android:id="@+id/rangoHora2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="8dp"
-            android:text=":"
-            android:textSize="18sp"
-            android:textColor="@color/black"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintStart_toEndOf="@+id/rangoHora1"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
-
-        <TextView
-            android:id="@+id/diasDisponibles"
-            android:layout_width="0dp"
-            android:layout_height="wrap_content"
-            android:textColor="@color/black"
-            android:textSize="18sp"
-            android:gravity="center"
+            android:textSize="20sp"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="@+id/linearLayout"
-            app:layout_constraintStart_toStartOf="@+id/linearLayout"
-            app:layout_constraintTop_toBottomOf="@+id/rangoHora1" />
+            app:layout_constraintTop_toBottomOf="@+id/linearLayout1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

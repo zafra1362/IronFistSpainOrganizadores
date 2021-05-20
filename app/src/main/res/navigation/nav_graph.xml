@@ -16,8 +16,8 @@
         android:label="fragment_notificaciones"
         tools:layout="@layout/fragment_notificaciones" >
         <action
-            android:id="@+id/action_notificacionesFragment_to_editarRetoFragment"
-            app:destination="@id/editarRetoFragment" />
+            android:id="@+id/action_notificacionesFragment_to_aceptarRetoFragment"
+            app:destination="@id/aceptarRetoFragment" />
     </fragment>
     <fragment
         android:id="@+id/retosPendientesFragment"
@@ -32,6 +32,9 @@
         <action
             android:id="@+id/action_loginFragment_to_registroFragment"
             app:destination="@id/registroFragment" />
+        <action
+            android:id="@+id/action_loginFragment_to_notificacionesFragment"
+            app:destination="@id/notificacionesFragment" />
     </fragment>
     <fragment
         android:id="@+id/registroFragment"
@@ -47,4 +50,14 @@
         android:name="com.renegade.EditarRetoFragment"
         android:label="fragment_editar_reto"
         tools:layout="@layout/fragment_editar_reto" />
+    <dialog
+        android:id="@+id/visualizarRetoFragment"
+        android:name="com.renegade.VisualizarRetoFragment"
+        android:label="fragment_visualizar_reto"
+        tools:layout="@layout/fragment_visualizar_reto" />
+    <dialog
+        android:id="@+id/aceptarRetoFragment"
+        android:name="com.renegade.AceptarRetoFragment"
+        android:label="fragment_aceptar_reto"
+        tools:layout="@layout/fragment_aceptar_reto" />
 </navigation>

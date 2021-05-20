@@ -49,7 +49,7 @@ public class LoginFragment extends BaseFragment {
                 auth.signInWithEmailAndPassword(email, password)
                         .addOnCompleteListener(task -> {
                             if (task.isSuccessful()) {
-                                nav.navigate(R.id.notificacionesFragment);
+                                nav.navigate(R.id.action_loginFragment_to_notificacionesFragment);
                             } else Toast.makeText(requireContext(), task.getException().getLocalizedMessage(), Toast.LENGTH_SHORT).show();
                         });
             }

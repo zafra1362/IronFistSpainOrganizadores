@@ -2,63 +2,118 @@ package com.renegade;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link RetosPendientesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.renegade.databinding.FragmentRetosPendientesBinding;
+import com.renegade.databinding.ViewholderNotificacionBinding;
+import com.renegade.databinding.ViewholderRetoPendienteBinding;
+
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
+
+
 public class RetosPendientesFragment extends BaseFragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentRetosPendientesBinding binding;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public RetosPendientesFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment retosPendientes.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static RetosPendientesFragment newInstance(String param1, String param2) {
-        RetosPendientesFragment fragment = new RetosPendientesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    List<Encuentro> retos = new ArrayList<>();
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return (binding = FragmentRetosPendientesBinding.inflate(inflater, container, false)).getRoot();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        LinearLayoutManager verticalLayoutManager
+                = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
+        binding.retosPendientesRecycler.setLayoutManager(verticalLayoutManager);
+        binding.retosPendientesRecycler.setAdapter(retosPendientesAdapter);
+
+    }
+
+    class RetosAdapter extends RecyclerView.Adapter<RetosViewHolder> {
+
+        String nicknameRival1, nicknameRival2;
+        Long puntuacionRival1, puntuacionRival2;
+
+        @NonNull
+        @Override
+        public RetosViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new RetosViewHolder(ViewholderRetoPendienteBinding.inflate(getLayoutInflater(), parent, false));
         }
+
+        @Override
+        public void onBindViewHolder(@NonNull RetosViewHolder holder, int position) {
+            Encuentro encuentro = retos.get(position);
+
+            db.collection(CollectionDB.USUARIOS)
+                    .document(encuentro.uidLocal)
+                    .get()
+                    .addOnSuccessListener(doc -> {
+                        nicknameRival1 = doc.getString("nickname");
+                        puntuacionRival1 = doc.getLong("puntuacion");
+
+                        holder.binding.nombreRival1Notificacion.setText(nicknameRival1);
+                        db.collection(CollectionDB.USUARIOS)
+                                .document(encuentro.uidVisitante)
+                                .get()
+                                .addOnSuccessListener(doc1 -> {
+                                    nicknameRival2 = doc1.getString("nickname");
+                                    puntuacionRival2 = doc1.getLong("puntuacion");
+
+                                    holder.binding.nombreRival2Notificacion.setText(nicknameRival2);
+                                });
+                    });
+
+            holder.binding.rangoHora1.setText(encuentro.rangoHoraMin);
+            holder.binding.rangoHora2.setText(encuentro.rangoHoraMax);
+            holder.binding.diasDisponibles.setText(Arrays.toString(encuentro.diasSeleccionados.toArray()));
+
+            holder.itemView.setOnClickListener(v -> {
+
+                viewModel.estadoRetoLiveData.setValue(encuentro.estado);
+                viewModel.idEncuentroLiveData.setValue(encuentro.id);
+
+                viewModel.nombreRival1LiveData.setValue(holder.binding.nombreRival1Notificacion.getText().toString());
+                viewModel.nombreRival2LiveData.setValue(holder.binding.nombreRival2Notificacion.getText().toString());
+
+                viewModel.puntuacionRival1LiveData.setValue(puntuacionRival1);
+                viewModel.puntuacionRival2LiveData.setValue(puntuacionRival2);
+
+                viewModel.diasSeleccionadosLiveData.setValue(Arrays.toString(encuentro.diasSeleccionados.toArray()));
+                viewModel.hora1lLiveData.setValue(encuentro.rangoHoraMin);
+                viewModel.hora2LiveData.setValue(encuentro.rangoHoraMax);
+
+                Log.e("ABCD", "nombre: " + viewModel.nombreRival1LiveData.getValue() + " nombne: " + viewModel.nombreRival2LiveData.getValue() + " nombne: " + viewModel.diasSeleccionadosLiveData.getValue() + " nombne: " + viewModel.hora1lLiveData.getValue());
+
+                nav.navigate(R.id.action_notificacionesFragment_to_aceptarRetoFragment);
+            });
+        }
+
+        @Override
+        public int getItemCount() {
+            return retos == null ? 10 : retos.size();
+        }
+
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_retos_pendientes, container, false);
+    static class RetosViewHolder extends RecyclerView.ViewHolder {
+        ViewholderRetoPendienteBinding binding;
+        public RetosViewHolder(@NonNull ViewholderRetoPendienteBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
     }
 }

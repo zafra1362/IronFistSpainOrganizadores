@@ -56,29 +56,11 @@ public class NotificacionesFragment extends BaseFragment {
                             String uidVisitante = noti.getString("uidVisitante");
                             String rangoHoraMin = noti.getString("rangoHoraMin");
                             String rangoHoraMax = noti.getString("rangoHoraMax");
-                            List<String> diasDisponibles = (List<String>) noti.get("diasSeleccionados");
+                            List<Integer> diasDisponibles = (List<Integer>) noti.get("diasSeleccionados");
+                            String estado = noti.getString("estado");
 
-                            db.collection(CollectionDB.USUARIOS)
-                                    .document(uidLocal)
-                                    .get()
-                                    .addOnSuccessListener(doc -> {
-                                        String nicknameRival1 = doc.getString("nickname");
-
-
-                                        db.collection(CollectionDB.USUARIOS)
-                                                .document(uidVisitante)
-                                                .get()
-                                                .addOnSuccessListener(doc1 -> {
-                                                    String nicknameRival2 = doc1.getString("nickname");
-
-                                                    Log.e("ABCD", "Nickname Rival1: " + nicknameRival1  + "Nickname Rival2: " + nicknameRival2  + " - Hora minima: " + rangoHoraMin + " - Hora maxima: " + rangoHoraMax + " - Dias Seleccionados: " + diasDisponibles);
-
-                                                    notificaciones.add(new Encuentro(nicknameRival1, nicknameRival2, rangoHoraMin, rangoHoraMax, diasDisponibles, uidLocal, uidVisitante, id));
-                                                    notificacionesAdapter.notifyDataSetChanged();
-                                                });
-
-                                    });
-
+                            notificaciones.add(new Encuentro(estado, uidLocal, uidVisitante, diasDisponibles, rangoHoraMin, rangoHoraMax, id));
+                            notificacionesAdapter.notifyDataSetChanged();
 
                         }
                     }
@@ -88,6 +70,9 @@ public class NotificacionesFragment extends BaseFragment {
     }
 
     class NotificacionesAdapter extends RecyclerView.Adapter<NotificacionViewHolder> {
+
+        String nicknameRival1, nicknameRival2;
+        Long puntuacionRival1, puntuacionRival2;
 
         @NonNull
         @Override
@@ -99,24 +84,47 @@ public class NotificacionesFragment extends BaseFragment {
         public void onBindViewHolder(@NonNull NotificacionViewHolder holder, int position) {
             Encuentro encuentro = notificaciones.get(position);
 
-            holder.binding.nombreRival1Notificacion.setText(encuentro.nicknameRival1);
-            holder.binding.nombreRival2Notificacion.setText(encuentro.nicknameRival2);
+            db.collection(CollectionDB.USUARIOS)
+                    .document(encuentro.uidLocal)
+                    .get()
+                    .addOnSuccessListener(doc -> {
+                        nicknameRival1 = doc.getString("nickname");
+                        puntuacionRival1 = doc.getLong("puntuacion");
+
+                        holder.binding.nombreRival1Notificacion.setText(nicknameRival1);
+                        db.collection(CollectionDB.USUARIOS)
+                                .document(encuentro.uidVisitante)
+                                .get()
+                                .addOnSuccessListener(doc1 -> {
+                                    nicknameRival2 = doc1.getString("nickname");
+                                    puntuacionRival2 = doc1.getLong("puntuacion");
+
+                                    holder.binding.nombreRival2Notificacion.setText(nicknameRival2);
+                                });
+                    });
+
             holder.binding.rangoHora1.setText(encuentro.rangoHoraMin);
             holder.binding.rangoHora2.setText(encuentro.rangoHoraMax);
-            holder.binding.diasDisponibles.setText(Arrays.toString(encuentro.diasDisponibles.toArray()));
+            holder.binding.diasDisponibles.setText(Arrays.toString(encuentro.diasSeleccionados.toArray()));
 
             holder.itemView.setOnClickListener(v -> {
 
+                viewModel.estadoRetoLiveData.setValue(encuentro.estado);
                 viewModel.idEncuentroLiveData.setValue(encuentro.id);
-                viewModel.nombreRival1LiveData.setValue(encuentro.nicknameRival1);
-                viewModel.nombreRival2LiveData.setValue(encuentro.rangoHoraMin);
+
+                viewModel.nombreRival1LiveData.setValue(holder.binding.nombreRival1Notificacion.getText().toString());
+                viewModel.nombreRival2LiveData.setValue(holder.binding.nombreRival2Notificacion.getText().toString());
+
+                viewModel.puntuacionRival1LiveData.setValue(puntuacionRival1);
+                viewModel.puntuacionRival2LiveData.setValue(puntuacionRival2);
+
+                viewModel.diasSeleccionadosLiveData.setValue(Arrays.toString(encuentro.diasSeleccionados.toArray()));
                 viewModel.hora1lLiveData.setValue(encuentro.rangoHoraMin);
                 viewModel.hora2LiveData.setValue(encuentro.rangoHoraMax);
-                viewModel.diasSeleccionadosLiveData.setValue(Arrays.toString(encuentro.diasDisponibles.toArray()));
-                viewModel.uidRival1LiveData.setValue(encuentro.uidRival1);
 
                 Log.e("ABCD", "nombre: " + viewModel.nombreRival1LiveData.getValue() + " nombne: " + viewModel.nombreRival2LiveData.getValue() + " nombne: " + viewModel.diasSeleccionadosLiveData.getValue() + " nombne: " + viewModel.hora1lLiveData.getValue());
-                nav.navigate(R.id.action_notificacionesFragment_to_editarRetoFragment);
+
+                nav.navigate(R.id.action_notificacionesFragment_to_aceptarRetoFragment);
             });
         }
 
