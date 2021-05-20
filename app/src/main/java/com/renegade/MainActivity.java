@@ -22,5 +22,16 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = ((NavHostFragment) getSupportFragmentManager().findFragmentById(R.id.nav_host_fragment)).getNavController();
         NavigationUI.setupWithNavController(binding.bottomNavView, navController);
 
+        navController.addOnDestinationChangedListener((controller, destination, arguments) -> {
+
+            // bottomNav
+            if (destination.getId() == R.id.loginFragment ||
+                    destination.getId() == R.id.registroFragment) {
+                binding.bottomNavView.setVisibility(View.GONE);
+            } else {
+                binding.bottomNavView.setVisibility(View.VISIBLE);
+            }
+        });
+
     }
 }
