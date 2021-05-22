@@ -26,18 +26,18 @@ public class AceptarRetoFragment extends BaseDialogFragment {
     public void onViewCreated(@NonNull View view, @Nullable  Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        binding.nombreRival1Noti.setText(viewModel.nombreRival1LiveData.getValue());
-        binding.nombreRival2Noti.setText(viewModel.nombreRival2LiveData.getValue());
-        binding.puntuacionRival1Noti.setText(""+viewModel.puntuacionRival1LiveData.getValue());
-        binding.puntuacionRival2Noti.setText(""+viewModel.puntuacionRival2LiveData.getValue());
+        binding.nombreRival1RetoEdit.setText(viewModel.nombreRival1LiveData.getValue());
+        binding.nombreRival2RetoEdit.setText(viewModel.nombreRival2LiveData.getValue());
+        binding.puntuacionRival1RetoEdit.setText(""+viewModel.puntuacionRival1LiveData.getValue());
+        binding.puntuacionRival2RetoEdit.setText(""+viewModel.puntuacionRival2LiveData.getValue());
         binding.rangoHora1.setText(viewModel.hora1lLiveData.getValue());
         binding.rangoHora2.setText(viewModel.hora2LiveData.getValue());
         binding.diasDisponibles.setText(viewModel.diasSeleccionadosLiveData.getValue());
 
-        binding.botonAceptarReto.setOnClickListener(v -> {
+        binding.botonPlanearReto.setOnClickListener(v -> {
             db.collection(CollectionDB.ENCUENTROS)
                     .document(viewModel.idEncuentroLiveData.getValue())
-                    .update("estado", "En proceso");
+                    .update("estado", "En proceso", "organizador", user.getDisplayName());
 
             nav.popBackStack();
         });

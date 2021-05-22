@@ -31,7 +31,7 @@
                 android:id="@+id/nombreRival1Notificacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rival"
+                android:text=""
                 android:textColor="@color/DarkRed"
                 android:textSize="22sp"
                 android:textStyle="bold" />
@@ -47,7 +47,7 @@
                 android:id="@+id/nombreRival2Notificacion"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Rival"
+                android:text=""
                 android:textColor="@color/DarkRed"
                 android:textSize="22sp"
                 android:textStyle="bold" />

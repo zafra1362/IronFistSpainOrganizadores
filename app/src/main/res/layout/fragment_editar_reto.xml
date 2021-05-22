@@ -1,14 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
+    android:layout_height="wrap_content"
+    android:padding="16dp"
     tools:context=".EditarRetoFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/nombreRival1RetoEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:textColor="@color/DarkRed"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textVS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/puntuacionRival1RetoEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/nombreRival1RetoEdit"
+        app:layout_constraintStart_toStartOf="@+id/nombreRival1RetoEdit"
+        app:layout_constraintTop_toBottomOf="@+id/nombreRival1RetoEdit" />
+
+
+    <TextView
+        android:id="@+id/nombreRival2RetoEdit"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="8dp"
+        android:gravity="center"
+        android:textColor="@color/DarkRed"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textVS"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/puntuacionRival2RetoEdit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/nombreRival2RetoEdit"
+        app:layout_constraintStart_toStartOf="@+id/nombreRival2RetoEdit"
+        app:layout_constraintTop_toBottomOf="@+id/nombreRival2RetoEdit" />
+
+    <TextView
+        android:id="@+id/textVS"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="VS"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/nombreRival2RetoEdit"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/nombreRival2RetoEdit" />
+
+    <Space
+        android:id="@+id/space"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+
+
+    <TextView
+        android:id="@+id/rangoHora2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@color/DarkRed"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toTopOf="@+id/separadorHoras"
+        app:layout_constraintEnd_toEndOf="@+id/separadorHoras"
+        app:layout_constraintStart_toStartOf="@+id/separadorHoras" />
+
+    <TextView
+        android:id="@+id/separadorHoras"
+        android:layout_width="8dp"
+        android:layout_height="19dp"
+        android:text="-"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        app:layout_constraintBottom_toTopOf="@+id/tituloHoraEncuentro"
+        app:layout_constraintEnd_toStartOf="@+id/textVS"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/puntuacionRival1RetoEdit" />
+
+    <TextView
+        android:id="@+id/rangoHora1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=":"
+        android:textColor="@color/DarkRed"
+        android:textSize="20sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="@+id/separadorHoras"
+        app:layout_constraintStart_toStartOf="@+id/separadorHoras"
+        app:layout_constraintTop_toBottomOf="@id/separadorHoras" />
+
+    <TextView
+        android:id="@+id/diasDisponibles"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="8dp"
+        android:gravity="center"
+        android:text=""
+        android:textAlignment="center"
+        android:textColor="@color/DarkRed"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/rangoHora1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textVS"
+        app:layout_constraintTop_toTopOf="@+id/rangoHora2" />
+
+    <TextView
+        android:id="@+id/tituloHoraEncuentro"
+        android:layout_width="140dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Hora del encuentro"
+        android:textColor="@color/black"
+        app:layout_constraintTop_toTopOf="@+id/space"
+        app:layout_constraintEnd_toStartOf="@+id/textVS"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:layout_editor_absoluteY="79dp" />
+
+
+    <Button
+        android:id="@+id/buttonHoraEncuentro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/my_button_bg"
+        android:text=":"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toTopOf="@id/botonPlanearReto"
+        app:layout_constraintEnd_toEndOf="@+id/tituloHoraEncuentro"
+        app:layout_constraintStart_toStartOf="@+id/tituloHoraEncuentro"
+        app:layout_constraintTop_toBottomOf="@+id/tituloHoraEncuentro" />
+
+    <TextView
+        android:id="@+id/tituloFechaEncuentro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="Fecha del encuentro"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textVS"
+        app:layout_constraintTop_toTopOf="@+id/tituloHoraEncuentro" />
+
+    <Button
+        android:id="@+id/buttonFechaEncuentro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/my_button_bg"
+        android:text=""
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toTopOf="@id/botonPlanearReto"
+        app:layout_constraintEnd_toEndOf="@+id/tituloFechaEncuentro"
+        app:layout_constraintStart_toStartOf="@+id/tituloFechaEncuentro"
+        app:layout_constraintTop_toBottomOf="@+id/tituloFechaEncuentro" />
+    <Button
+        android:id="@+id/botonPlanearReto"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:backgroundTint="@color/DarkGreen"
+        android:padding="15dp"
+        android:text="Planear reto"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

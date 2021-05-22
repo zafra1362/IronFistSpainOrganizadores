@@ -5,7 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:padding="16dp"
-    tools:context=".AceptarRetoFragment">
+    tools:context=".FinalizarRetoFragment">
+
 
     <TextView
         android:id="@+id/nombreRival1RetoEdit"
@@ -86,88 +87,59 @@
         android:layout_width="140dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:text="Rango de horas"
-        android:textColor="@color/black"
         android:gravity="center"
-        app:layout_constraintEnd_toStartOf="@+id/space"
+        android:text="Hora del encuentro"
+        android:textColor="@color/black"
+        app:layout_constraintEnd_toStartOf="@+id/textVS"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/puntuacionRival1RetoEdit" />
+
+
+    <Button
+        android:id="@+id/buttonHoraEncuentro"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/my_button_bg"
+        android:text=":"
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toTopOf="@id/botonPlanearReto"
+        app:layout_constraintEnd_toEndOf="@+id/tituloHoraEncuentro"
+        app:layout_constraintStart_toStartOf="@+id/tituloHoraEncuentro"
+        app:layout_constraintTop_toBottomOf="@+id/tituloHoraEncuentro" />
 
     <TextView
         android:id="@+id/tituloFechaEncuentro"
         android:layout_width="140dp"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="8dp"
-        android:text="Dias disponibles"
-        android:textColor="@color/black"
         android:gravity="center"
-        app:layout_constraintBottom_toTopOf="@+id/diasDisponibles"
+        android:text="Fecha del encuentro"
+        android:textColor="@color/black"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/space"
+        app:layout_constraintStart_toEndOf="@+id/textVS"
         app:layout_constraintTop_toTopOf="@+id/tituloHoraEncuentro" />
 
-
-    <TextView
-        android:id="@+id/rangoHora2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=":"
-        android:textColor="@color/DarkRed"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/separadorHoras"
-        app:layout_constraintEnd_toEndOf="@+id/separadorHoras"
-        app:layout_constraintStart_toStartOf="@+id/separadorHoras" />
-
-    <TextView
-        android:id="@+id/separadorHoras"
-        android:layout_width="8dp"
-        android:layout_height="19dp"
-        android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
-        android:text="-"
-        android:textColor="@color/black"
-        android:textSize="17sp"
-        app:layout_constraintBottom_toTopOf="@id/botonPlanearReto"
-        app:layout_constraintEnd_toStartOf="@+id/space"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rangoHora2" />
-
-    <TextView
-        android:id="@+id/rangoHora1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text=":"
-        android:textColor="@color/DarkRed"
-        android:textSize="20sp"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="@+id/separadorHoras"
-        app:layout_constraintStart_toStartOf="@+id/separadorHoras"
-        app:layout_constraintTop_toBottomOf="@id/separadorHoras" />
-
-
-    <TextView
-        android:id="@+id/diasDisponibles"
+    <Button
+        android:id="@+id/buttonFechaEncuentro"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="8dp"
-        android:layout_marginEnd="8dp"
-        android:gravity="center"
+        android:layout_marginVertical="8dp"
+        android:background="@drawable/my_button_bg"
         android:text=""
-        android:textAlignment="center"
-        android:textColor="@color/DarkRed"
-        android:textStyle="bold"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/space"
-        app:layout_constraintTop_toTopOf="@+id/rangoHora2" />
-
+        android:textColor="@color/black"
+        android:textSize="23sp"
+        app:layout_constraintBottom_toTopOf="@id/botonPlanearReto"
+        app:layout_constraintEnd_toEndOf="@+id/tituloFechaEncuentro"
+        app:layout_constraintStart_toStartOf="@+id/tituloFechaEncuentro"
+        app:layout_constraintTop_toBottomOf="@+id/tituloFechaEncuentro" />
     <Button
         android:id="@+id/botonPlanearReto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/DarkGreen"
         android:padding="15dp"
-        android:text="Aceptar"
+        android:text="Planear reto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />

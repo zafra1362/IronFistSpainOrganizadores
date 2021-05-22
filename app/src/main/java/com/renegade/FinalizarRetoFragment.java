@@ -10,10 +10,10 @@ import android.view.ViewGroup;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link VisualizarRetoFragment#newInstance} factory method to
+ * Use the {@link FinalizarRetoFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VisualizarRetoFragment extends BaseDialogFragment {
+public class FinalizarRetoFragment extends BaseDialogFragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -24,7 +24,7 @@ public class VisualizarRetoFragment extends BaseDialogFragment {
     private String mParam1;
     private String mParam2;
 
-    public VisualizarRetoFragment() {
+    public FinalizarRetoFragment() {
         // Required empty public constructor
     }
 
@@ -37,8 +37,8 @@ public class VisualizarRetoFragment extends BaseDialogFragment {
      * @return A new instance of fragment ModificarRetoFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static VisualizarRetoFragment newInstance(String param1, String param2) {
-        VisualizarRetoFragment fragment = new VisualizarRetoFragment();
+    public static FinalizarRetoFragment newInstance(String param1, String param2) {
+        FinalizarRetoFragment fragment = new FinalizarRetoFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -59,6 +59,6 @@ public class VisualizarRetoFragment extends BaseDialogFragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_visualizar_reto, container, false);
+        return inflater.inflate(R.layout.fragment_finalizar_reto, container, false);
     }
 }

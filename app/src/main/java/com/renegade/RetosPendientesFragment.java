@@ -13,6 +13,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.renegade.databinding.FragmentRetosPendientesBinding;
 import com.renegade.databinding.ViewholderNotificacionBinding;
 import com.renegade.databinding.ViewholderRetoPendienteBinding;
@@ -25,6 +26,8 @@ import java.util.List;
 public class RetosPendientesFragment extends BaseFragment {
 
     private FragmentRetosPendientesBinding binding;
+
+    RetosAdapter retosAdapter = new RetosAdapter();
 
     List<Encuentro> retos = new ArrayList<>();
     @Override
@@ -39,7 +42,30 @@ public class RetosPendientesFragment extends BaseFragment {
         LinearLayoutManager verticalLayoutManager
                 = new LinearLayoutManager(getContext(), LinearLayoutManager.VERTICAL, false);
         binding.retosPendientesRecycler.setLayoutManager(verticalLayoutManager);
-        binding.retosPendientesRecycler.setAdapter(retosPendientesAdapter);
+        binding.retosPendientesRecycler.setAdapter(retosAdapter);
+
+        db.collection(CollectionDB.ENCUENTROS)
+                .whereEqualTo("organizador", user.getDisplayName())
+                .addSnapshotListener((value, error) -> {
+                    retos.clear();
+                    for (QueryDocumentSnapshot noti : value) {
+                        if (noti != null) {
+
+                            String id = noti.getId();
+                            String uidLocal = noti.getString("uidLocal");
+                            String uidVisitante = noti.getString("uidVisitante");
+                            String rangoHoraMin = noti.getString("rangoHoraMin");
+                            String rangoHoraMax = noti.getString("rangoHoraMax");
+                            List<Integer> diasDisponibles = (List<Integer>) noti.get("diasSeleccionados");
+                            String estado = noti.getString("estado");
+
+                            retos.add(new Encuentro(estado, uidLocal, uidVisitante, diasDisponibles, rangoHoraMin, rangoHoraMax, id));
+                            retosAdapter.notifyDataSetChanged();
+
+                        }
+                    }
+                });
+
 
     }
 
@@ -65,7 +91,7 @@ public class RetosPendientesFragment extends BaseFragment {
                         nicknameRival1 = doc.getString("nickname");
                         puntuacionRival1 = doc.getLong("puntuacion");
 
-                        holder.binding.nombreRival1Notificacion.setText(nicknameRival1);
+                        holder.binding.nombreRival1RetoPendiente.setText(nicknameRival1);
                         db.collection(CollectionDB.USUARIOS)
                                 .document(encuentro.uidVisitante)
                                 .get()
@@ -73,21 +99,19 @@ public class RetosPendientesFragment extends BaseFragment {
                                     nicknameRival2 = doc1.getString("nickname");
                                     puntuacionRival2 = doc1.getLong("puntuacion");
 
-                                    holder.binding.nombreRival2Notificacion.setText(nicknameRival2);
+                                    holder.binding.nombreRival2RetoPendiente.setText(nicknameRival2);
                                 });
                     });
 
-            holder.binding.rangoHora1.setText(encuentro.rangoHoraMin);
-            holder.binding.rangoHora2.setText(encuentro.rangoHoraMax);
-            holder.binding.diasDisponibles.setText(Arrays.toString(encuentro.diasSeleccionados.toArray()));
+            holder.binding.estadoRetoPendiente.setText(encuentro.estado);
 
             holder.itemView.setOnClickListener(v -> {
 
                 viewModel.estadoRetoLiveData.setValue(encuentro.estado);
                 viewModel.idEncuentroLiveData.setValue(encuentro.id);
 
-                viewModel.nombreRival1LiveData.setValue(holder.binding.nombreRival1Notificacion.getText().toString());
-                viewModel.nombreRival2LiveData.setValue(holder.binding.nombreRival2Notificacion.getText().toString());
+                viewModel.nombreRival1LiveData.setValue(holder.binding.nombreRival1RetoPendiente.getText().toString());
+                viewModel.nombreRival2LiveData.setValue(holder.binding.nombreRival2RetoPendiente.getText().toString());
 
                 viewModel.puntuacionRival1LiveData.setValue(puntuacionRival1);
                 viewModel.puntuacionRival2LiveData.setValue(puntuacionRival2);
@@ -98,7 +122,8 @@ public class RetosPendientesFragment extends BaseFragment {
 
                 Log.e("ABCD", "nombre: " + viewModel.nombreRival1LiveData.getValue() + " nombne: " + viewModel.nombreRival2LiveData.getValue() + " nombne: " + viewModel.diasSeleccionadosLiveData.getValue() + " nombne: " + viewModel.hora1lLiveData.getValue());
 
-                nav.navigate(R.id.action_notificacionesFragment_to_aceptarRetoFragment);
+                if (encuentro.estado.equals("En proceso")) nav.navigate(R.id.editarRetoFragment);
+                else nav.navigate(R.id.finalizarRetoFragment);
             });
         }
 
