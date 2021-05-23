@@ -84,7 +84,7 @@
 
     <TextView
         android:id="@+id/tituloHoraEncuentro"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
         android:gravity="center"
@@ -94,24 +94,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/puntuacionRival1RetoEdit" />
 
-
-    <Button
-        android:id="@+id/buttonHoraEncuentro"
-        android:layout_width="0dp"
+    <TextView
+        android:id="@+id/horaEncuentro"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
-        android:background="@drawable/my_button_bg"
-        android:text=":"
         android:textColor="@color/black"
-        android:textSize="23sp"
-        app:layout_constraintBottom_toTopOf="@id/botonPlanearReto"
-        app:layout_constraintEnd_toEndOf="@+id/tituloHoraEncuentro"
-        app:layout_constraintStart_toStartOf="@+id/tituloHoraEncuentro"
+        android:textSize="23dp"
+        app:layout_constraintEnd_toStartOf="@+id/textVS"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/tituloHoraEncuentro" />
 
     <TextView
         android:id="@+id/tituloFechaEncuentro"
-        android:layout_width="140dp"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="center"
         android:text="Fecha del encuentro"
@@ -120,29 +115,107 @@
         app:layout_constraintStart_toEndOf="@+id/textVS"
         app:layout_constraintTop_toTopOf="@+id/tituloHoraEncuentro" />
 
-    <Button
-        android:id="@+id/buttonFechaEncuentro"
+    <TextView
+        android:id="@+id/fechaEncuentro"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textColor="@color/black"
+        android:textSize="23dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textVS"
+        app:layout_constraintTop_toBottomOf="@+id/tituloFechaEncuentro" />
+
+    <TextView
+        android:id="@+id/textFistTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="FT"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/textResultadoLocal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textResultadoLocal" />
+
+    <EditText
+        android:id="@+id/firstTo"
+        android:layout_width="30dp"
+        android:layout_height="wrap_content"
+        android:inputType="number"
+        android:maxLength="10"
+        app:layout_constraintEnd_toEndOf="@+id/textFistTo"
+        app:layout_constraintStart_toStartOf="@+id/textFistTo"
+        app:layout_constraintTop_toBottomOf="@+id/textFistTo" />
+
+    <TextView
+        android:id="@+id/textResultadoLocal"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
+        android:text="Resultado del reto"
+        android:textColor="@color/black"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/textFistTo"
+        app:layout_constraintTop_toBottomOf="@+id/horaEncuentro" />
+
+    <EditText
+        android:id="@+id/resultadoLocal"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginVertical="8dp"
-        android:background="@drawable/my_button_bg"
-        android:text=""
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="10"
+        app:layout_constraintEnd_toStartOf="@+id/textView4"
+        app:layout_constraintStart_toStartOf="@+id/textResultadoLocal"
+        app:layout_constraintTop_toBottomOf="@+id/textResultadoLocal" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
         android:textColor="@color/black"
-        android:textSize="23sp"
-        app:layout_constraintBottom_toTopOf="@id/botonPlanearReto"
-        app:layout_constraintEnd_toEndOf="@+id/tituloFechaEncuentro"
-        app:layout_constraintStart_toStartOf="@+id/tituloFechaEncuentro"
-        app:layout_constraintTop_toBottomOf="@+id/tituloFechaEncuentro" />
+        android:textSize="20dp"
+        app:layout_constraintBottom_toBottomOf="@+id/resultadoVisitante"
+        app:layout_constraintEnd_toStartOf="@+id/resultadoVisitante"
+        app:layout_constraintStart_toEndOf="@+id/resultadoLocal"
+        app:layout_constraintTop_toTopOf="@+id/resultadoVisitante" />
+
+    <EditText
+        android:id="@+id/resultadoVisitante"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="10dp"
+        android:gravity="center"
+        android:inputType="number"
+        android:maxLength="10"
+        app:layout_constraintEnd_toEndOf="@+id/textResultadoLocal"
+        app:layout_constraintStart_toEndOf="@+id/textView4"
+        app:layout_constraintTop_toBottomOf="@+id/textResultadoLocal" />
+
+    <EditText
+        android:id="@+id/enlaceReto"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:hint="http://twitch.tv/*LINK DEL VIDEO*/embed"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/resultadoLocal" />
+
+
     <Button
-        android:id="@+id/botonPlanearReto"
+        android:id="@+id/botonFinalizarReto"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:backgroundTint="@color/DarkGreen"
         android:padding="15dp"
-        android:text="Planear reto"
+        android:text="Finalizar reto"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/enlaceReto" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

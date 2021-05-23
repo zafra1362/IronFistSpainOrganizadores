@@ -17,6 +17,7 @@ public class Encuentro {
     String rangoHoraMin;
     String rangoHoraMax;
     String id;
+    Long firstTo;
 
     public Encuentro(String estado, String uidLocal, String uidVisitante, List<Integer> diasSeleccionados, String rangoHoraMin, String rangoHoraMax, String id) {
         this.estado = estado;
@@ -122,5 +123,13 @@ public class Encuentro {
 
     public void setRangoHoraMax(String rangoHoraMax) {
         this.rangoHoraMax = rangoHoraMax;
+    }
+
+    public Long getFirstTo() {
+        return firstTo;
+    }
+
+    public void setFirstTo(Long firstTo) {
+        this.firstTo = firstTo;
     }
 }

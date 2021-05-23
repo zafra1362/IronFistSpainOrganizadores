@@ -39,7 +39,7 @@ public class AceptarRetoFragment extends BaseDialogFragment {
                     .document(viewModel.idEncuentroLiveData.getValue())
                     .update("estado", "En proceso", "organizador", user.getDisplayName());
 
-            nav.popBackStack();
+            nav.navigate(R.id.retosPendientesFragment);
         });
     }
 }

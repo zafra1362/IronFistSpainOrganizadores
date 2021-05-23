@@ -16,4 +16,6 @@ public class IFSViewModel extends ViewModel {
     public MutableLiveData<String> hora2LiveData = new MutableLiveData<>();
     public MutableLiveData<String> diasSeleccionadosLiveData = new MutableLiveData<>();
     public MutableLiveData<String> estadoRetoLiveData = new MutableLiveData<>();
+    public MutableLiveData<String> horaEncuentro = new MutableLiveData<>();
+    public MutableLiveData<String> fechaEncuentro = new MutableLiveData<>();
 }

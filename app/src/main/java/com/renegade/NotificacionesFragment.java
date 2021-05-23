@@ -66,7 +66,6 @@ public class NotificacionesFragment extends BaseFragment {
                     }
                 });
 
-
     }
 
     class NotificacionesAdapter extends RecyclerView.Adapter<NotificacionViewHolder> {

@@ -52,6 +52,7 @@ public class EditarRetoFragment extends BaseDialogFragment {
                         try {
                             dateHoraEncuentro = f24horas.parse(tiempo);
                             binding.buttonHoraEncuentro.setText(f24horas.format(dateHoraEncuentro));
+                            viewModel.horaEncuentro.setValue(f24horas.format(dateHoraEncuentro));
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -70,6 +71,7 @@ public class EditarRetoFragment extends BaseDialogFragment {
                         try {
                             dateFechaEncuentro = fDiaMes.parse(fecha);
                             binding.buttonFechaEncuentro.setText(fDiaMes.format(dateFechaEncuentro));
+                            viewModel.horaEncuentro.setValue(fDiaMes.format(dateFechaEncuentro));
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
