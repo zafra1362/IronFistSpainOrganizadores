@@ -44,11 +44,11 @@ public class FinalizarRetoFragment extends BaseDialogFragment {
             resultadoVisitante = Integer.parseInt(binding.resultadoVisitante.getText().toString());
 
             if (resultadoLocal > resultadoVisitante) {
-                ganador = Integer.parseInt(binding.puntuacionRival1RetoEdit.getText().toString());
-                perdedor = Integer.parseInt(binding.puntuacionRival2RetoEdit.getText().toString());
+                ganador = Math.toIntExact(viewModel.puntuacionRival1LiveData.getValue());
+                perdedor = Math.toIntExact(viewModel.puntuacionRival2LiveData.getValue());
             } else if (resultadoLocal < resultadoVisitante) {
-                ganador = Integer.parseInt(binding.puntuacionRival2RetoEdit.getText().toString());
-                perdedor = Integer.parseInt(binding.puntuacionRival1RetoEdit.getText().toString());
+                ganador = Math.toIntExact(viewModel.puntuacionRival1LiveData.getValue());
+                perdedor = Math.toIntExact(viewModel.puntuacionRival2LiveData.getValue());
             } else {
                 binding.resultadoLocal.setError("");
                 binding.resultadoVisitante.setError("Los resultados no pueden ser iguales");
@@ -63,17 +63,17 @@ public class FinalizarRetoFragment extends BaseDialogFragment {
                         // buscar la los uid del local y visitante
 
                         if (resultadoLocal > resultadoVisitante) {
-                            resultadoLocal = Math.round(resultadoLocal + difP);
-                            resultadoVisitante = Math.round(resultadoVisitante - difP);
+                            ganador = Math.round(ganador + difP);
+                            perdedor = Math.round(perdedor - difP);
 
-                            db.collection(CollectionDB.USUARIOS).document(uidLocal).update("puntuacion", resultadoLocal);
-                            db.collection(CollectionDB.USUARIOS).document(uidVisitante).update("puntuacion", resultadoVisitante);
+                            db.collection(CollectionDB.USUARIOS).document(uidLocal).update("puntuacion", ganador);
+                            db.collection(CollectionDB.USUARIOS).document(uidVisitante).update("puntuacion", perdedor);
                         } else {
-                            resultadoLocal = Math.round(resultadoLocal - difP);
-                            resultadoVisitante = Math.round(resultadoVisitante + difP);
+                            perdedor = Math.round(perdedor - difP);
+                            ganador = Math.round(ganador + difP);
 
-                            db.collection(CollectionDB.USUARIOS).document(uidLocal).update("puntuacion", resultadoLocal);
-                            db.collection(CollectionDB.USUARIOS).document(uidVisitante).update("puntuacion", resultadoVisitante);
+                            db.collection(CollectionDB.USUARIOS).document(uidLocal).update("puntuacion", perdedor);
+                            db.collection(CollectionDB.USUARIOS).document(uidVisitante).update("puntuacion", ganador);
                         }
 
                     });
