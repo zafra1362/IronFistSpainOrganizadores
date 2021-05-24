@@ -7,7 +7,8 @@ public class Encuentro {
     String enlace;
     String estado;
     LocalDateTime fechaPeticion;
-    LocalDateTime fechaEncuentro;
+    String fechaEncuentro;
+    String horaEncuentro;
     String uidLocal;
     String uidVisitante;
     String organizador;
@@ -53,11 +54,11 @@ public class Encuentro {
         this.fechaPeticion = fechaPeticion;
     }
 
-    public LocalDateTime getFechaEncuentro() {
+    public String getFechaEncuentro() {
         return fechaEncuentro;
     }
 
-    public void setFechaEncuentro(LocalDateTime fechaEncuentro) {
+    public void setFechaEncuentro(String fechaEncuentro) {
         this.fechaEncuentro = fechaEncuentro;
     }
 
@@ -131,5 +132,13 @@ public class Encuentro {
 
     public void setFirstTo(Long firstTo) {
         this.firstTo = firstTo;
+    }
+
+    public String getHoraEncuentro() {
+        return horaEncuentro;
+    }
+
+    public void setHoraEncuentro(String horaEncuentro) {
+        this.horaEncuentro = horaEncuentro;
     }
 }

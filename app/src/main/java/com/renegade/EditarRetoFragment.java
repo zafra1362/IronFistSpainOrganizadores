@@ -71,7 +71,7 @@ public class EditarRetoFragment extends BaseDialogFragment {
                         try {
                             dateFechaEncuentro = fDiaMes.parse(fecha);
                             binding.buttonFechaEncuentro.setText(fDiaMes.format(dateFechaEncuentro));
-                            viewModel.horaEncuentro.setValue(fDiaMes.format(dateFechaEncuentro));
+                            viewModel.fechaEncuentro.setValue(fDiaMes.format(dateFechaEncuentro));
                         } catch (ParseException e) {
                             e.printStackTrace();
                         }
@@ -84,8 +84,10 @@ public class EditarRetoFragment extends BaseDialogFragment {
 
             db.collection(CollectionDB.ENCUENTROS)
                     .document(viewModel.idEncuentroLiveData.getValue())
-                    .update("estado", "Planeado",
-                            "fechaEncuentro", Arrays.asList(binding.buttonHoraEncuentro.getText(), binding.buttonFechaEncuentro.getText()));
+                    .update("estado", "Planificado",
+                            "fechaEncuentro", binding.buttonFechaEncuentro.getText(),
+                            "horaEncuentro", binding.buttonHoraEncuentro.getText()
+                    );
 
             nav.popBackStack();
         });

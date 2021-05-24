@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.renegade.databinding.FragmentAceptarRetoBinding;
 
@@ -39,7 +40,8 @@ public class AceptarRetoFragment extends BaseDialogFragment {
                     .document(viewModel.idEncuentroLiveData.getValue())
                     .update("estado", "En proceso", "organizador", user.getDisplayName());
 
-            nav.navigate(R.id.retosPendientesFragment);
+            Toast.makeText(getContext(), "Se ha creado un grupo con los contrincantes", Toast.LENGTH_SHORT).show();
+            nav.navigate(R.id.mensajesFragment);
         });
     }
 }

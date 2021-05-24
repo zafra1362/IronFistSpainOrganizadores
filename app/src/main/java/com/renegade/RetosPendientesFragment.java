@@ -46,6 +46,7 @@ public class RetosPendientesFragment extends BaseFragment {
 
         db.collection(CollectionDB.ENCUENTROS)
                 .whereEqualTo("organizador", user.getDisplayName())
+//                .orderBy("fechaEncuentro")
                 .addSnapshotListener((value, error) -> {
                     retos.clear();
                     for (QueryDocumentSnapshot noti : value) {
@@ -107,23 +108,33 @@ public class RetosPendientesFragment extends BaseFragment {
 
             holder.itemView.setOnClickListener(v -> {
 
+                db.collection(CollectionDB.USUARIOS).document(encuentro.uidLocal).get().addOnSuccessListener(documentSnapshot -> {
+                    viewModel.puntuacionRival1LiveData.setValue(documentSnapshot.getLong("puntuacion"));
+                });
+
+                db.collection(CollectionDB.USUARIOS).document(encuentro.uidVisitante).get().addOnSuccessListener(documentSnapshot -> {
+                    viewModel.puntuacionRival2LiveData.setValue(documentSnapshot.getLong("puntuacion"));
+                });
+
                 viewModel.estadoRetoLiveData.setValue(encuentro.estado);
                 viewModel.idEncuentroLiveData.setValue(encuentro.id);
 
                 viewModel.nombreRival1LiveData.setValue(holder.binding.nombreRival1RetoPendiente.getText().toString());
                 viewModel.nombreRival2LiveData.setValue(holder.binding.nombreRival2RetoPendiente.getText().toString());
 
-                viewModel.puntuacionRival1LiveData.setValue(puntuacionRival1);
-                viewModel.puntuacionRival2LiveData.setValue(puntuacionRival2);
 
                 viewModel.diasSeleccionadosLiveData.setValue(Arrays.toString(encuentro.diasSeleccionados.toArray()));
                 viewModel.hora1lLiveData.setValue(encuentro.rangoHoraMin);
                 viewModel.hora2LiveData.setValue(encuentro.rangoHoraMax);
 
+                viewModel.horaEncuentro.setValue(encuentro.horaEncuentro);
+                viewModel.fechaEncuentro.setValue(encuentro.fechaEncuentro);
+
                 Log.e("ABCD", "nombre: " + viewModel.nombreRival1LiveData.getValue() + " nombne: " + viewModel.nombreRival2LiveData.getValue() + " nombne: " + viewModel.diasSeleccionadosLiveData.getValue() + " nombne: " + viewModel.hora1lLiveData.getValue());
 
                 if (encuentro.estado.equals("En proceso")) nav.navigate(R.id.editarRetoFragment);
-                else nav.navigate(R.id.finalizarRetoFragment);
+                else if (encuentro.estado.equals("Planificado"))nav.navigate(R.id.finalizarRetoFragment);
+//                else nav.navigate(R.id.visualizarReto);
             });
         }
 
