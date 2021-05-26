@@ -2,63 +2,107 @@ package com.renegade;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link MensajesFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.renegade.databinding.FragmentMensajesBinding;
+import com.renegade.databinding.ViewholderMensajeBinding;
+
+import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
+
+
 public class MensajesFragment extends BaseFragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
+    private FragmentMensajesBinding binding;
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public MensajesFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment mensajes.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static MensajesFragment newInstance(String param1, String param2) {
-        MensajesFragment fragment = new MensajesFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
+    private List<Mensaje> chat = new ArrayList<>();
+    @Override
+    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+        return (binding = FragmentMensajesBinding.inflate(inflater,container, false)).getRoot();
     }
 
     @Override
-    public void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+
+        ChatAdapter chatAdapter = new ChatAdapter();
+        binding.chat.setAdapter(chatAdapter);
+
+        binding.enviar.setOnClickListener(v -> {
+            String email = auth.getCurrentUser().getEmail();
+            String nombre = auth.getCurrentUser().getDisplayName();
+//            String foto = auth.getCurrentUser().getPhotoUrl().toString();
+            String mensaje = binding.mensaje.getText().toString();
+            String fecha = LocalDateTime.now().toString();
+
+            db.collection(CollectionDB.MENSAJES)
+                    .add(new Mensaje(email, nombre, mensaje, fecha));
+
+            binding.mensaje.setText("");
+        });
+
+        db.collection(CollectionDB.MENSAJES).orderBy("fecha").addSnapshotListener((value, error) -> {
+            chat.clear();
+            for (QueryDocumentSnapshot m: value){
+
+                String email = m.getString("autorEmail");
+                String nombre = m.getString("autorNombre");
+                String foto = m.getString("autorFoto");
+                String texto = m.getString("mensaje");
+                String fecha = m.getString("fecha");
+
+                Mensaje mensaje = new Mensaje(email, nombre, texto, fecha);
+                chat.add(mensaje);
+            }
+            chatAdapter.notifyDataSetChanged();
+            binding.chat.scrollToPosition(chat.size() - 1);
+
+        });
+    }
+
+    class ChatAdapter extends RecyclerView.Adapter<MensajeViewHolder>{
+
+        @NonNull
+        @Override
+        public MensajeViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+            return new MensajeViewHolder(ViewholderMensajeBinding.inflate(getLayoutInflater(), parent, false));
+        }
+
+        @Override
+        public void onBindViewHolder(@NonNull MensajeViewHolder holder, int position) {
+            Mensaje mensaje = chat.get(position);
+
+            if(mensaje.autorEmail != null && mensaje.autorEmail.equals(user.getEmail())){
+                holder.binding.todo.setGravity(Gravity.END);
+            } else {
+                holder.binding.todo.setGravity(Gravity.START);
+            }
+            holder.binding.autor.setText(mensaje.autorNombre);
+
+            holder.binding.mensaje.setText(mensaje.mensaje);
+        }
+
+        @Override
+        public int getItemCount() {
+            return chat.size();
         }
     }
 
-    @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_mensajes, container, false);
+    static class MensajeViewHolder extends RecyclerView.ViewHolder{
+        ViewholderMensajeBinding binding;
+        public MensajeViewHolder(@NonNull ViewholderMensajeBinding binding) {
+            super(binding.getRoot());
+            this.binding = binding;
+        }
     }
 }

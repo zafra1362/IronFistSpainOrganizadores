@@ -141,7 +141,7 @@
         android:layout_width="30dp"
         android:layout_height="wrap_content"
         android:inputType="number"
-        android:maxLength="10"
+        android:maxLength="2"
         app:layout_constraintEnd_toEndOf="@+id/textFistTo"
         app:layout_constraintStart_toStartOf="@+id/textFistTo"
         app:layout_constraintTop_toBottomOf="@+id/textFistTo" />
@@ -165,7 +165,7 @@
         android:layout_marginHorizontal="10dp"
         android:gravity="center"
         android:inputType="number"
-        android:maxLength="10"
+        android:maxLength="2"
         app:layout_constraintEnd_toStartOf="@+id/textView4"
         app:layout_constraintStart_toStartOf="@+id/textResultadoLocal"
         app:layout_constraintTop_toBottomOf="@+id/textResultadoLocal" />
@@ -189,7 +189,7 @@
         android:layout_marginHorizontal="10dp"
         android:gravity="center"
         android:inputType="number"
-        android:maxLength="10"
+        android:maxLength="2"
         app:layout_constraintEnd_toEndOf="@+id/textResultadoLocal"
         app:layout_constraintStart_toEndOf="@+id/textView4"
         app:layout_constraintTop_toBottomOf="@+id/textResultadoLocal" />

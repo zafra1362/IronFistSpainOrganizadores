@@ -8,7 +8,6 @@ public class Organizador {
     public Organizador(String nombre, String enlace) {
         this.nombre = nombre;
         this.enlace = enlace;
-        rol = "organizador";
     }
 
     public String getNombre() {

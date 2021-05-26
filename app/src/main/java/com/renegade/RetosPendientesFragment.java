@@ -57,7 +57,7 @@ public class RetosPendientesFragment extends BaseFragment {
                             String uidVisitante = noti.getString("uidVisitante");
                             String rangoHoraMin = noti.getString("rangoHoraMin");
                             String rangoHoraMax = noti.getString("rangoHoraMax");
-                            List<Integer> diasDisponibles = (List<Integer>) noti.get("diasSeleccionados");
+                            List<String> diasDisponibles = (List<String>) noti.get("diasSeleccionados");
                             String estado = noti.getString("estado");
 
                             retos.add(new Encuentro(estado, uidLocal, uidVisitante, diasDisponibles, rangoHoraMin, rangoHoraMax, id));

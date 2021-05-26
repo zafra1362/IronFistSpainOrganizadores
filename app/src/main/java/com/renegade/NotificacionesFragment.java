@@ -56,7 +56,7 @@ public class NotificacionesFragment extends BaseFragment {
                             String uidVisitante = noti.getString("uidVisitante");
                             String rangoHoraMin = noti.getString("rangoHoraMin");
                             String rangoHoraMax = noti.getString("rangoHoraMax");
-                            List<Integer> diasDisponibles = (List<Integer>) noti.get("diasSeleccionados");
+                            List<String> diasDisponibles = (List<String>) noti.get("diasSeleccionados");
                             String estado = noti.getString("estado");
 
                             notificaciones.add(new Encuentro(estado, uidLocal, uidVisitante, diasDisponibles, rangoHoraMin, rangoHoraMax, id));

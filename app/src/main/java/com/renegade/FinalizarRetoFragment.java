@@ -47,11 +47,12 @@ public class FinalizarRetoFragment extends BaseDialogFragment {
                 ganador = Math.toIntExact(viewModel.puntuacionRival1LiveData.getValue());
                 perdedor = Math.toIntExact(viewModel.puntuacionRival2LiveData.getValue());
             } else if (resultadoLocal < resultadoVisitante) {
-                ganador = Math.toIntExact(viewModel.puntuacionRival1LiveData.getValue());
-                perdedor = Math.toIntExact(viewModel.puntuacionRival2LiveData.getValue());
+                ganador = Math.toIntExact(viewModel.puntuacionRival2LiveData.getValue());
+                perdedor = Math.toIntExact(viewModel.puntuacionRival1LiveData.getValue());
             } else {
                 binding.resultadoLocal.setError("");
                 binding.resultadoVisitante.setError("Los resultados no pueden ser iguales");
+                return;
             }
 
             TekkenFT calcularELO = new TekkenFT();
@@ -60,7 +61,6 @@ public class FinalizarRetoFragment extends BaseDialogFragment {
             db.collection(CollectionDB.ENCUENTROS).document(viewModel.idEncuentroLiveData.getValue()).get().addOnSuccessListener(doc -> {
                         uidLocal = doc.getString("uidLocal");
                         uidVisitante = doc.getString("uidVisitante");
-                        // buscar la los uid del local y visitante
 
                         if (resultadoLocal > resultadoVisitante) {
                             ganador = Math.round(ganador + difP);
