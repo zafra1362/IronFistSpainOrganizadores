@@ -84,7 +84,7 @@
 
 
     <TextView
-        android:id="@+id/rangoHora2"
+        android:id="@+id/rangoHora1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=":"
@@ -108,7 +108,7 @@
         app:layout_constraintTop_toBottomOf="@+id/puntuacionRival1RetoEdit" />
 
     <TextView
-        android:id="@+id/rangoHora1"
+        android:id="@+id/rangoHora2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=":"
@@ -129,10 +129,10 @@
         android:textAlignment="center"
         android:textColor="@color/DarkRed"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="@+id/rangoHora1"
+        app:layout_constraintBottom_toBottomOf="@+id/rangoHora2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/textVS"
-        app:layout_constraintTop_toTopOf="@+id/rangoHora2" />
+        app:layout_constraintTop_toTopOf="@+id/rangoHora1" />
 
     <TextView
         android:id="@+id/tituloHoraEncuentro"

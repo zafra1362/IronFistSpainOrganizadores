@@ -108,7 +108,7 @@
 
 
     <TextView
-        android:id="@+id/rangoHora2"
+        android:id="@+id/rangoHora1"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=":"
@@ -131,10 +131,10 @@
         app:layout_constraintBottom_toTopOf="@id/botonPlanearReto"
         app:layout_constraintEnd_toStartOf="@+id/space"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/rangoHora2" />
+        app:layout_constraintTop_toTopOf="@+id/rangoHora1" />
 
     <TextView
-        android:id="@+id/rangoHora1"
+        android:id="@+id/rangoHora2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text=":"
@@ -159,7 +159,7 @@
         android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/space"
-        app:layout_constraintTop_toTopOf="@+id/rangoHora2" />
+        app:layout_constraintTop_toTopOf="@+id/rangoHora1" />
 
     <Button
         android:id="@+id/botonPlanearReto"
